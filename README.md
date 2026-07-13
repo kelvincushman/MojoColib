@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/kelvincushman/MojoColib/actions/workflows/ci.yml/badge.svg)](https://github.com/kelvincushman/MojoColib/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/kelvincushman/MojoColib?utm_source=oss&utm_medium=github&utm_campaign=kelvincushman%2FMojoColib&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)](https://coderabbit.ai)
 [![Status](https://img.shields.io/badge/status-research_preview-orange.svg)](#current-status)
 
 ### Verifiable AI work across ordinary machines
