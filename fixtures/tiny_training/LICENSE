@@ -1,0 +1,11 @@
+MojoColib tiny training fixture
+Copyright 2026 MojoColib contributors
+
+The generator, synthetic records, configuration files and deterministically
+generated synthetic weights in this directory are licensed under the Apache
+License, Version 2.0. The complete licence text is in the repository root at
+../../LICENSE.
+
+This fixture is generated without downloaded model weights or datasets and is
+not derived from Qwen or another third-party model. Replacing it with a real
+model or dataset requires a separate licence and provenance review.

@@ -1,0 +1,21 @@
+[package]
+name = "colibri-scheduler"
+description = "Deterministic compatibility-first scheduler for MojoColib"
+edition.workspace = true
+rust-version.workspace = true
+version.workspace = true
+publish.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[dependencies]
+colibri-protocol = { path = "../protocol" }
+serde.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true
+
+[lints]
+workspace = true

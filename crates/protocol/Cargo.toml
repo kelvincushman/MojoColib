@@ -1,0 +1,26 @@
+[package]
+name = "colibri-protocol"
+description = "Canonical, runtime-neutral MojoColib protocol contracts"
+edition.workspace = true
+rust-version.workspace = true
+version.workspace = true
+publish.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[dependencies]
+base64.workspace = true
+ed25519-dalek.workspace = true
+hex.workspace = true
+serde.workspace = true
+serde_jcs.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true
+
+[lints]
+workspace = true

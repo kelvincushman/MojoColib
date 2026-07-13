@@ -1,0 +1,7 @@
+* text=auto eol=lf
+
+engine/colibri/** linguist-vendored
+*.safetensors binary
+*.png binary
+*.ico binary
+*.icns binary

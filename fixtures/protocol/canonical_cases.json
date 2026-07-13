@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "name": "object-key-order",
+      "value": {"z": 2, "a": 1},
+      "canonical": "{\"a\":1,\"z\":2}",
+      "sha256": "sha256:99168216144c7fed5d4c54916cf98d9c66096280c04a499822a99b6658bd177a"
+    },
+    {
+      "name": "lossless-microcredits",
+      "value": {
+        "items": ["alpha", "beta"],
+        "amount": "9223372036854775807",
+        "schema_version": 1
+      },
+      "canonical": "{\"amount\":\"9223372036854775807\",\"items\":[\"alpha\",\"beta\"],\"schema_version\":1}",
+      "sha256": "sha256:d901b21474d4c33a8565c029a9113d7147ad3f5c55c386bdd2909f8b0a16dd57"
+    },
+    {
+      "name": "nested-runtime-metadata",
+      "value": {
+        "optional": null,
+        "metadata": {"vendor": "amd", "backend": "mojo"},
+        "active": true
+      },
+      "canonical": "{\"active\":true,\"metadata\":{\"backend\":\"mojo\",\"vendor\":\"amd\"},\"optional\":null}",
+      "sha256": "sha256:dd4f9569aa0d7ea4c0cb9ae34195cfafec4d3502288cca934b231f69648e0ce8"
+    }
+  ]
+}

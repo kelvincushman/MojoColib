@@ -1,0 +1,45 @@
+{
+  "files": [
+    {
+      "bytes": 285,
+      "path": "model_config.json",
+      "sha256": "b993251671fa28810367ee86af11d61c76f39f59e6ecef7e31428252d4d5975d"
+    },
+    {
+      "bytes": 83984,
+      "path": "model.safetensors",
+      "sha256": "ef87ad0da0c390a0527669e5d8f181acc910d5a850a50fdc04cab7b29f6d7380"
+    },
+    {
+      "bytes": 967,
+      "path": "vocab.json",
+      "sha256": "8c88013db52c964d0b1e723202d61a4a0b5d1280d77fd395ab884068f952731c"
+    },
+    {
+      "bytes": 2688,
+      "path": "train.jsonl",
+      "sha256": "f80475c31894f96921d2900fde9f6215f8368c53ac966521aaaed7121815aa03"
+    },
+    {
+      "bytes": 664,
+      "path": "eval.jsonl",
+      "sha256": "4c569744442f1bbf989b58acc97d9fa276b54e3755b3f59f6656cb107b8ce317"
+    },
+    {
+      "bytes": 737,
+      "path": "recipe.json",
+      "sha256": "687d01d2696abf6227685e1b918b27416f811a1f9be4b8149e6b63d0bbf93bcb"
+    },
+    {
+      "bytes": 1427,
+      "path": "expected.json",
+      "sha256": "4e536e5b1976ee52cbf62ecb940bd7330175ba6b067298a07311b9ae99b5c2ca"
+    }
+  ],
+  "fixture": "mojocolib-tiny-training-v1",
+  "generator_revision": "mojocolib-fixture-v1",
+  "generator_sha256": "07f39abc54a4f53e3098daa6d040a4656b778f69cf53d9fa104fe4cbb94a5cf3",
+  "license_status": "Apache-2.0-project-owned-synthetic",
+  "schema_version": 1,
+  "seed": 1729
+}

@@ -1,0 +1,19 @@
+MojoColib
+Copyright 2026 MojoColib contributors
+
+This product includes an unmodified snapshot of Colibri from
+https://github.com/JustVugg/colibri at commit
+92011def0746a2b53d7a625f320a89e29db882e5, licensed under the Apache License,
+Version 2.0. Its original licence is retained at engine/colibri/LICENSE.
+
+No Modular SDK, Mojo compiler/runtime, CUDA toolkit, ROCm toolkit, accelerator
+driver, model weight, Solana validator or wallet software is distributed as
+part of this source tree unless a future release explicitly says otherwise.
+
+Additional third-party copyright and licence notices for bundled shadcn/ui
+source and Unicode-derived data are retained in THIRD_PARTY_NOTICES.md and the
+licenses/ directory.
+
+MAX® and Mojo® are trademarks of Modular, Inc. used under license. MojoColib
+is an independent community project and is not affiliated with or endorsed by
+Modular, Inc.

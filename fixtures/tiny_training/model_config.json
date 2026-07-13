@@ -1,0 +1,13 @@
+{
+  "architecture": "MojoColibTinyCausalTransformer",
+  "attention_heads": 4,
+  "context_length": 32,
+  "dropout": 0.0,
+  "dtype": "float32",
+  "hidden_size": 32,
+  "intermediate_size": 64,
+  "layers": 2,
+  "parameter_count": 20288,
+  "tie_word_embeddings": true,
+  "vocab_size": 64
+}

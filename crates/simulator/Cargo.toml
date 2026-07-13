@@ -1,0 +1,20 @@
+[package]
+name = "colibri-simulator"
+description = "Deterministic in-memory Step 1 simulator for MojoColib"
+edition.workspace = true
+rust-version.workspace = true
+version.workspace = true
+publish.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[dependencies]
+colibri-protocol = { path = "../protocol" }
+colibri-state-machine = { path = "../state-machine" }
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+
+[lints]
+workspace = true

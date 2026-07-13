@@ -1,0 +1,8 @@
+{"id":"eval-01","input":"copyDEFGH012","target":"DEFGH012","task":"copy_sequence"}
+{"id":"eval-02","input":"copyGH012345","target":"GH012345","task":"copy_sequence"}
+{"id":"eval-03","input":"copy1234567a","target":"1234567a","task":"copy_sequence"}
+{"id":"eval-04","input":"copy4567abcd","target":"4567abcd","task":"copy_sequence"}
+{"id":"eval-05","input":"copy7abcdefg","target":"7abcdefg","task":"copy_sequence"}
+{"id":"eval-06","input":"copycdefghAB","target":"cdefghAB","task":"copy_sequence"}
+{"id":"eval-07","input":"copyfghABCDE","target":"fghABCDE","task":"copy_sequence"}
+{"id":"eval-08","input":"copyABCDEFGH","target":"ABCDEFGH","task":"copy_sequence"}

@@ -1,0 +1,39 @@
+{
+  "backend": "pytorch_cpu",
+  "checkpoint_after_step": 5,
+  "checkpoint_state": [
+    "adapter",
+    "optimizer",
+    "scheduler",
+    "step",
+    "epoch",
+    "rng"
+  ],
+  "deterministic_algorithms": true,
+  "gradient_accumulation_steps": 2,
+  "learning_rate": "0.001000000",
+  "lora": {
+    "alpha": 4,
+    "dropout": "0.000000000",
+    "rank": 2,
+    "targets": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "micro_batch_size": 2,
+  "offline_required": true,
+  "optimizer": {
+    "beta1": "0.900000000",
+    "beta2": "0.999000000",
+    "epsilon": "0.000000010",
+    "name": "adamw",
+    "weight_decay": "0.010000000"
+  },
+  "optimizer_steps": 12,
+  "scheduler": {
+    "name": "constant"
+  },
+  "schema_version": 1,
+  "seed": 1729
+}
