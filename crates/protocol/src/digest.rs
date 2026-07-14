@@ -14,6 +14,12 @@ const PREFIX: &str = "sha256:";
 pub struct Sha256Digest([u8; 32]);
 
 impl Sha256Digest {
+    /// Builds a digest from its already-computed SHA-256 bytes.
+    #[must_use]
+    pub const fn from_raw_bytes(bytes: [u8; 32]) -> Self {
+        Self(bytes)
+    }
+
     /// Hashes arbitrary bytes.
     #[must_use]
     pub fn of_bytes(bytes: &[u8]) -> Self {

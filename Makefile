@@ -1,6 +1,6 @@
-.PHONY: check docs rust upstream
+.PHONY: check docs rust web upstream
 
-check: docs rust upstream
+check: docs rust web upstream
 
 docs:
 	python3 tools/check_docs.py
@@ -13,7 +13,12 @@ docs:
 rust:
 	cargo fmt --all -- --check
 	cargo clippy --workspace --all-targets -- -D warnings
-	cargo test --workspace
+	MOJOCOLIB_TEST_SECRET=parent-only cargo test --workspace
+
+web:
+	cd apps/control-plane-web && npm ci
+	cd apps/control-plane-web && npm test
+	cd apps/control-plane-web && npm run build
 
 upstream:
 	$(MAKE) -C engine/colibri check

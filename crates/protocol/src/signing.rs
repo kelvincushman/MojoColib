@@ -43,16 +43,16 @@ pub struct TrustedEd25519KeyV1 {
 }
 
 impl TrustedEd25519KeyV1 {
-    fn verifying_key(&self, now_unix_ms: u64) -> Result<VerifyingKey, ProtocolError> {
+    /// Returns the validated Ed25519 public-key material from this registry record.
+    ///
+    /// This deliberately does not check the record's validity interval. Callers
+    /// that use a key for signature verification must still use
+    /// [`SignedEnvelopeV1::verify_with_registry_key`].
+    pub fn public_key_bytes(&self) -> Result<[u8; 32], ProtocolError> {
         if self.schema_version != SCHEMA_VERSION_V1 {
             return Err(ProtocolError::UnsupportedSchemaVersion {
                 actual: self.schema_version,
                 expected: SCHEMA_VERSION_V1,
-            });
-        }
-        if now_unix_ms < self.valid_from_unix_ms || now_unix_ms >= self.expires_at_unix_ms {
-            return Err(ProtocolError::InvalidSignature {
-                field: "inactive registry key",
             });
         }
         let key_bytes = STANDARD_NO_PAD
@@ -66,6 +66,19 @@ impl TrustedEd25519KeyV1 {
                 .map_err(|_| ProtocolError::InvalidSignature {
                     field: "registry public key",
                 })?;
+        VerifyingKey::from_bytes(&key_bytes).map_err(|_| ProtocolError::InvalidSignature {
+            field: "registry public key",
+        })?;
+        Ok(key_bytes)
+    }
+
+    fn verifying_key(&self, now_unix_ms: u64) -> Result<VerifyingKey, ProtocolError> {
+        if now_unix_ms < self.valid_from_unix_ms || now_unix_ms >= self.expires_at_unix_ms {
+            return Err(ProtocolError::InvalidSignature {
+                field: "inactive registry key",
+            });
+        }
+        let key_bytes = self.public_key_bytes()?;
         VerifyingKey::from_bytes(&key_bytes).map_err(|_| ProtocolError::InvalidSignature {
             field: "registry public key",
         })

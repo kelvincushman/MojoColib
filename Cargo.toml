@@ -1,5 +1,8 @@
 [workspace]
 members = [
+    "crates/artifact-client",
+    "crates/coordinator-core",
+    "crates/local-worker",
     "crates/protocol",
     "crates/scheduler",
     "crates/simulator",

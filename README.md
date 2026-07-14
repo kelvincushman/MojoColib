@@ -14,8 +14,8 @@ Gated Mojo accelerator experiments. Optional Solana settlement mirroring.
 > **Research preview:** MojoColib is not yet a working compute marketplace,
 > production inference service or distributed training network. The current
 > repository contains protocol contracts, deterministic state machines, a
-> scheduler, an in-memory simulator, structural fixtures and a pinned copy of
-> the upstream Colibri engine.
+> scheduler, an in-memory simulator, structural fixtures, a pinned copy of the
+> upstream Colibri engine, and local artifact-storage and worker foundations.
 
 ## Vision
 
@@ -65,20 +65,27 @@ method, requirements and caveats.
 | Area | Status | What exists |
 | --- | --- | --- |
 | Repository and provenance | Implemented | Pinned Colibri snapshot, licence record, ADRs and CI |
-| Protocol contracts | Implemented | Versioned pipeline, lease, artifact, capability, benchmark, verification, audit, signing and ledger types |
-| State machines | Implemented | Pure replay-safe pipeline, stage and off-chain-ledger reducers |
+| Protocol contracts | Implemented | Versioned pipeline, lease, artifact, capability, benchmark, verification, audit, signing, V1 ledger and V2 quote/funding/reservation/settlement/finality terms |
+| State machines | Implemented | Pure replay-safe pipeline, stage, off-chain-ledger and V2 settlement-finality reducers with reservation-expiry enforcement |
 | Scheduler | Implemented | Deterministic compatibility, availability, reliability, resource and budget filtering |
 | Simulator | Partial | One in-memory happy path; no real worker or training process |
+| Artifact storage foundation | Implemented locally | Attempt-scoped staging, integrity revalidation and immutable content-addressed promotion; no remote object-store or credential flow yet |
+| Local worker/executor slice | Implemented locally | Signed assignment, pinned executor-digest check, worker-owned clock, bounded native child, in-memory replay guard, signed result and input-bound local verification/promotion; no durable registry, networked service or production sandbox |
+| Operator control dashboard | Implemented locally | Product-owned React/Vite pilot preview for pipeline, provider, artifact, verification and test-credit UX; fixture-backed and read-only, with no coordinator connection or mutation controls |
 | Tiny training fixture | Partial | Deterministic offline inputs and structural checks; executable train/resume golden pending |
 | Colibri integration | Partial | Imported and CPU build-tested; not connected to a marketplace executor |
-| Coordinator and worker services | Not started | No PostgreSQL, object-store or networked worker implementation |
+| Coordinator protocol core | Implemented locally | Signed, checksummed single-writer V2 reservation journal with customer and rail-attestor evidence; no API, PostgreSQL, remote object store or worker sessions |
+| Networked coordinator and worker services | Not started | No HTTP/gRPC service, PostgreSQL, remote object-store or worker-session implementation |
 | P2P inference and training | Not started | Protocol and product design only |
 | Mojo backend | Not started | No Mojo source, compiler or runtime is required by the current build |
-| Solana integration | Not started | Gated until off-chain accounting is proven |
+| Solana integration | Not started | V2 is rail-neutral contract logic only; a program, wallet flow and real settlement remain gated |
 | Public source licence | Implemented | Apache-2.0 for project-authored work; third-party terms retained separately |
 
 The exact implemented Rust surface is listed in the
-[V1 protocol inventory](docs/protocol-contracts-v1.md).
+[V1 protocol inventory](docs/protocol-contracts-v1.md) and [V2 settlement
+inventory](docs/protocol-contracts-v2.md). V2 is not a payment rail: its local
+journal has no coordinator database, wallet flow, Solana program or real-value
+settlement.
 
 ## What “P2P” means here
 
@@ -272,6 +279,7 @@ The current checks require:
 
 - Rust 1.97 through `rustup`;
 - Python 3.12 or later;
+- Node.js 22.22.2 with npm for the control-plane web check;
 - a C compiler and `make`; and
 - no model download, Mojo installation, CUDA toolkit or Solana toolchain.
 
@@ -303,6 +311,7 @@ crates/
   state-machine/  Deterministic pipeline, stage and ledger reducers
   scheduler/      Compatible-worker filtering and selection
   simulator/      In-memory contract happy path
+  artifact-client/ Local attempt staging and immutable artifact promotion
 
 engine/
   colibri/        Pinned upstream Colibri snapshot

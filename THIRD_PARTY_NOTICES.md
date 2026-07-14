@@ -69,19 +69,39 @@ The direct dependencies resolved by the initial source release are:
 | `base64` | 0.22.1 | MIT OR Apache-2.0 |
 | `ed25519-dalek` | 2.2.0 | BSD-3-Clause |
 | `hex` | 0.4.3 | MIT OR Apache-2.0 |
+| `opendal` | 0.58.0 | Apache-2.0 |
 | `proptest` | 1.11.0 | MIT OR Apache-2.0 |
 | `serde` | 1.0.228 | MIT OR Apache-2.0 |
 | `serde_jcs` | 0.2.0 | MIT OR Apache-2.0 |
 | `serde_json` | 1.0.150 | MIT OR Apache-2.0 |
 | `sha2` | 0.10.9 | MIT OR Apache-2.0 |
+| `tempfile` | 3.27.0 | MIT OR Apache-2.0 |
 | `thiserror` | 2.0.18 | MIT OR Apache-2.0 |
+| `tokio` | 1.52.3 | MIT |
 
-The imported web and desktop lockfiles describe dependencies that are fetched
-at build time rather than vendored here. A distributable web or desktop bundle
-must generate and ship the exact notices for its resolved graph, including any
-applicable MPL-2.0 material. Optional Python training packages are likewise not
-bundled and require a version-locked licence report before a runtime image is
-released.
+## Product-owned web console dependencies
+
+`apps/control-plane-web/` is a product-owned React/Vite application. Its
+`package-lock.json` is the authoritative resolved dependency graph. The direct
+dependencies declared for the first local preview are:
+
+| Package | Version | Declared licence |
+| --- | --- | --- |
+| `@types/react` | 19.2.17 | MIT |
+| `@types/react-dom` | 19.2.3 | MIT |
+| `@vitejs/plugin-react` | 6.0.3 | MIT |
+| `react` | 19.2.7 | MIT |
+| `react-dom` | 19.2.7 | MIT |
+| `typescript` | 7.0.2 | Apache-2.0 |
+| `vite` | 8.1.4 | MIT |
+| `vitest` | 4.1.10 | MIT |
+
+The imported web and desktop lockfiles also describe dependencies that are
+fetched at build time rather than vendored here. A distributable web or desktop
+bundle must generate and ship the exact notices for its resolved graph,
+including any applicable MPL-2.0 material. Optional Python training packages
+are likewise not bundled and require a version-locked licence report before a
+runtime image is released.
 
 ## Models, datasets and vendor software
 

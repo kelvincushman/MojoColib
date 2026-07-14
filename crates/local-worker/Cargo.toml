@@ -1,0 +1,31 @@
+[package]
+name = "colibri-local-worker"
+description = "Local trusted-worker vertical slice for MojoColib"
+edition.workspace = true
+rust-version.workspace = true
+version.workspace = true
+publish.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[dependencies]
+base64.workspace = true
+colibri-artifact-client = { path = "../artifact-client" }
+colibri-protocol = { path = "../protocol" }
+ed25519-dalek.workspace = true
+hex.workspace = true
+serde.workspace = true
+serde_jcs.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+tempfile = "=3.27.0"
+thiserror.workspace = true
+tokio = { version = "=1.52.3", features = ["fs", "io-util", "process", "sync", "time"] }
+
+[dev-dependencies]
+colibri-state-machine = { path = "../state-machine" }
+tokio = { version = "=1.52.3", features = ["macros", "rt-multi-thread"] }
+
+[lints]
+workspace = true

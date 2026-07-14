@@ -14,6 +14,7 @@ pub mod lease;
 pub mod ledger;
 pub mod pipeline;
 pub mod provider;
+pub mod settlement_v2;
 pub mod signing;
 pub mod strict_json;
 pub mod template;
@@ -25,3 +26,6 @@ pub use error::ProtocolError;
 
 /// Schema version used by the first public contract family.
 pub const SCHEMA_VERSION_V1: u16 = 1;
+
+/// Schema version used by the V2 settlement contract family.
+pub const SCHEMA_VERSION_V2: u16 = 2;

@@ -14,13 +14,13 @@ The plan deliberately proves the training marketplace before adding Mojo kernels
 
 ## 2. Current repository state
 
-- The workspace now contains Rust protocol, replay-safe state-machine, deterministic scheduler and runnable in-memory simulator crates, deterministic offline fixtures and CI.
+- The workspace now contains Rust protocol, replay-safe state-machine, deterministic scheduler, runnable in-memory simulator, local artifact-client and local-worker crates, deterministic offline fixtures and CI.
 - The directory is a Git checkout with upstream Colibri pinned under `engine/colibri/`; branch protection and a clean hosted CI run still remain external setup work.
 - The product/engineering brief already defines the control, execution, artifact and settlement planes at `docs/decentralized-ml-training-marketplace-mvp.md:278-302`.
 - The PRD converts that brief into prioritised requirements, contracts and acceptance tests at `docs/mojocolib-training-prd.md:137-351` and `docs/mojocolib-training-prd.md:483-531`.
 - The existing Mojo plan remains an independent extension and explicitly excludes training.
 
-Repository bootstrap and provenance are complete. The V1 contract core and one replay-safe happy path run locally; real training/resume and the coordinator/worker service boundary remain the next gates.
+Repository bootstrap and provenance are complete. The V1 contract core, one replay-safe happy path, local immutable artifact staging/promotion and a signed local native dataset-preparation worker path run locally; real training/resume, remote object storage and the coordinator/worker service boundary remain the next gates.
 
 ## 3. Requirements summary
 
@@ -114,6 +114,7 @@ crates/
   scheduler/
   manifests/
   artifact-client/
+  local-worker/
   metering/
 services/
   coordinator/
@@ -248,7 +249,7 @@ Estimated effort: 3–5 focused days.
 
 Purpose: make state, signatures, fencing and accounting correct before real GPUs or processes are involved.
 
-Implementation checkpoint (2026-07-12): V1 contracts, strict canonical parsing/signing, replay-safe reducers, fixed-integer ledger, property tests, compatibility scheduler and a deterministic completed-stage simulator are implemented. The exit gate remains open until failure/expiry/resume scenarios, an object-store simulation and initial schemas are added.
+Implementation checkpoint (2026-07-13): V1 contracts, strict canonical parsing/signing, replay-safe reducers, fixed-integer ledger, property tests, compatibility scheduler and a deterministic completed-stage simulator are implemented. A local OpenDAL filesystem adapter now streams attempt-scoped candidates, revalidates bytes and promotes immutable content-addressed artifacts without overwrite. Its portable key layout and separate staging/promotion capabilities make it suitable for the next local worker slice, but not yet a durable coordinator-owned acceptance flow. The exit gate remains open until failure/expiry/resume scenarios, that acceptance flow, remote object-store conformance and initial schemas are added.
 
 Actions:
 
@@ -301,6 +302,8 @@ Estimated effort: 1.5–2.5 weeks.
 
 Purpose: prove the complete network and artifact path without ML training variability.
 
+Implementation checkpoint (2026-07-13): a local development-only `dataset-prepare-v1` path now retains its trusted operator key and clock, verifies an operator-signed request and active fence, checks the installed executor's pinned bundle digest before launch, clears the child environment, and gives the native child only bounded public bytes. The supervisor uses bounded concurrent child I/O, owns an in-memory replay guard, stages the returned bytes and signs a dataset manifest. The trusted local verifier is bound to the signed assignment and input, independently recomputes the deterministic result, rechecks the current assignment before promotion and removes the duplicate attempt candidate after success. This proves the intended supervisor/executor boundary and exercises the artifact contract, but it is deliberately not a network service or production sandbox: it has no PostgreSQL acceptance transaction, remote object store, durable signed-template/identity registry, durable replay store, OS resource isolation, worker session or customer API. The Step 2 exit gate remains open.
+
 Actions:
 
 1. Implement the Axum coordinator API and PostgreSQL repository.
@@ -323,6 +326,7 @@ Files:
 - `services/coordinator/src/ledger/quote.rs`
 - `services/coordinator/src/ledger/reservation.rs`
 - `crates/artifact-client/**`
+- `crates/local-worker/**`
 - `python/colibri_mesh_sdk/**`
 - `python/templates/dataset_prepare_v1/**`
 - `deploy/dev/**`
