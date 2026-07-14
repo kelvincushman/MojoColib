@@ -5,6 +5,7 @@
 
 pub mod ledger;
 pub mod pipeline;
+pub mod settlement_v2;
 pub mod stage;
 
 mod event;

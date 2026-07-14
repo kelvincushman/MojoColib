@@ -1,4 +1,6 @@
 /target/
+node_modules/
+/apps/control-plane-web/dist/
 **/__pycache__/
 *.py[cod]
 .venv/

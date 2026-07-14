@@ -2,6 +2,10 @@
 
 This document names the public Rust contract surface currently implemented in `crates/protocol`. It is an implementation inventory, not a claim that the coordinator, worker, training executor or marketplace services exist.
 
+The separate V2 settlement contract family is described in the
+[V2 settlement inventory](protocol-contracts-v2.md); it does not alter the
+meaning of a V1 quote, reservation or settlement.
+
 Every versioned top-level V1 contract uses `schema_version = 1`. The types in the signed-contract table implement `SignedContract` and travel inside `SignedEnvelopeV1<T>`. Incoming untrusted signed JSON must use `strict_json::parse_signed_envelope`; see [ADR-0002](adr/0002-canonical-encoding.md).
 
 ## Signed contract types

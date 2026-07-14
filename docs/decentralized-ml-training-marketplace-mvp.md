@@ -6,7 +6,14 @@ Initial network: 5–10 trusted provider machines
 Primary implementation language: Rust
 Training runtime: Python and PyTorch
 Kernel/inference runtime: Mojo plus Colibri
-Settlement: Solana localnet and devnet only
+Settlement: V2 signed pilot journal; future Solana localnet/devnet only
+
+> [!NOTE]
+> The current authority and settlement source of truth is
+> [ADR-0010](adr/0010-network-topology-and-progressive-decentralisation.md)
+> and [ADR-0011](adr/0011-platform-fee-and-settlement-policy.md). The Solana
+> design later in this brief is a gated future target, not an implemented
+> client, program, wallet flow or payment feature.
 
 ## 1. Executive summary
 
@@ -22,9 +29,9 @@ The network will not attempt to make unrelated residential GPUs behave like one 
 - quantization and model conversion;
 - final inference and serving benchmarks.
 
-Rust provides the control plane: pipeline state, scheduling, provider identity, artifact provenance, worker supervision, metering and Solana settlement. Python/PyTorch remains the training runtime because that ecosystem already supplies autograd, optimizers, datasets and parameter-efficient fine-tuning. Mojo supplies selected portable kernels and the Colibri inference path, but it is not treated as the sole training framework.
+Rust provides the control plane: pipeline state, scheduling, provider identity, artifact provenance, worker supervision, metering and later V2 settlement integration. Python/PyTorch remains the training runtime because that ecosystem already supplies autograd, optimizers, datasets and parameter-efficient fine-tuning. Mojo supplies selected portable kernels and the Colibri inference path, but it is not treated as the sole training framework.
 
-The MVP remains centralized where trust is still unsolved. Providers are invited, the coordinator schedules stages, artifacts live in ordinary object storage, and a coordinator authority approves devnet settlement. The experiment’s purpose is to prove useful work, reproducibility, recovery and provider economics before attempting anonymous participation or decentralized scheduling.
+The MVP remains centralized where trust is still unsolved. Providers are invited, the coordinator schedules stages, artifacts live in ordinary object storage, and a coordinator authority approves valueless test-credit settlement. The experiment’s purpose is to prove useful work, reproducibility, recovery and provider economics before attempting anonymous participation, decentralized scheduling or a settlement rail.
 
 ## 2. Revised product thesis
 
@@ -614,9 +621,12 @@ Useful work units depend on the stage:
 
 The accepted quote caps payout. A stage that fails verification receives no completion payment, but the MVP should separately measure whether limited checkpoint compensation is necessary to make honest providers willing to accept long jobs.
 
-## 23. Solana settlement
+## 23. Future Solana settlement (gated)
 
-Use Rust and Anchor on localnet first and devnet second.
+Only after the V2 coordinator, replay/reconciliation, independent security and
+operational gates in [ADR-0011](adr/0011-platform-fee-and-settlement-policy.md)
+are met may Rust and Anchor be evaluated on localnet first and devnet second.
+No listed account or instruction below currently exists in this repository.
 
 Accounts:
 
@@ -640,7 +650,7 @@ Instructions:
 
 On-chain data contains only opaque hashes, wallets, limits, states and amounts. Datasets, model names, metrics and checkpoints remain off-chain.
 
-The coordinator is the settlement authority in the MVP. Solana enforces escrow movement and provides an audit trail; it does not verify training. No mainnet deployment or real-value payment is allowed during MVP testing.
+The coordinator is the settlement authority in the MVP's valueless test-credit ledger. A future Solana program could enforce escrow movement and provide an audit trail, but it would not verify training. No mainnet deployment or real-value payment is allowed during MVP testing.
 
 ## 24. Security and data policy
 

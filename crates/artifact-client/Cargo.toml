@@ -1,0 +1,25 @@
+[package]
+name = "colibri-artifact-client"
+description = "Attempt-scoped artifact staging and immutable promotion for MojoColib"
+edition.workspace = true
+rust-version.workspace = true
+version.workspace = true
+publish.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[dependencies]
+colibri-protocol = { path = "../protocol" }
+hex.workspace = true
+opendal = { version = "=0.58.0", default-features = false, features = ["executors-tokio", "services-fs"] }
+sha2.workspace = true
+thiserror.workspace = true
+tokio = { version = "=1.52.3", features = ["fs", "io-util"] }
+
+[dev-dependencies]
+tempfile = "=3.27.0"
+tokio = { version = "=1.52.3", features = ["macros", "rt-multi-thread"] }
+
+[lints]
+workspace = true

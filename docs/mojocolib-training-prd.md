@@ -291,6 +291,7 @@ Economics is a go/no-go measure, not a hard technical completion condition:
 - **FR-LED-007 (P0):** The provider report MUST separate measured execution, estimated energy, tariff assumption, projected cost and projected margin.
 - **FR-LED-008 (P0):** The MVP MUST use valueless test credits only.
 - **FR-LED-009 (P1):** Solana localnet/devnet MAY mirror an already-final off-chain settlement; chain availability MUST NOT decide training acceptance.
+- **FR-LED-010 (P1):** Any V2 quote, funding authorization, reservation or settlement MUST follow [ADR-0011](adr/0011-platform-fee-and-settlement-policy.md): exact atomic funding terms, a quote-bound fee cap/recipient, accepted-work-only settlement and a replay-safe financial-finality lifecycle. V2 protocol code alone MUST NOT be represented as a wallet, escrow or payment feature.
 
 ### 9.9 Operator controls and audit
 
@@ -539,6 +540,7 @@ Deliver:
 - source repository bootstrap and upstream provenance;
 - architecture decision records for canonical encoding, the model/data/evaluation candidate and lock procedure, runtime isolation and off-chain ledger units;
 - decision records for checkpoint compensation, the minimum operator interface, tariff/comparator methodology and licensing/commercial posture;
+- progressive network-authority and V2 settlement-policy records before any independent coordinator, public provider or financial-rail implementation;
 - tiny deterministic model/data fixture;
 - protocol and threat-model drafts.
 
@@ -620,7 +622,7 @@ Begins only after Slice 4. Follows `docs/plans/mojo-colibri-olmoe-plan.md`. Its 
 
 ### Extension B — Solana
 
-Begins only after Slice 5 has demonstrated exact event replay and off-chain accounting. Localnet precedes devnet. Mainnet and real-value payment remain prohibited.
+Begins only after Slice 5 has demonstrated exact event replay and off-chain accounting. It follows [ADR-0011](adr/0011-platform-fee-and-settlement-policy.md): localnet precedes devnet, accepted work remains an off-chain verification decision, and mainnet and real-value payment remain prohibited.
 
 ### Extension C — Rust-native training
 
